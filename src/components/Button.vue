@@ -21,5 +21,4 @@ export default {
     background-color:#91d8f6;
     font-weight: 700;
   }
-
-</style>>
+</style>
