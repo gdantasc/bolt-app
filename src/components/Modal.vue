@@ -4,10 +4,8 @@
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent max-width="600px">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark v-bind="attrs" v-on="on">
-              Evento
-            </v-btn>
-          </template>
+            <Button buttonName="Participar" v-bind="attrs" v-on="on" />
+            </template>
           <v-card>
             <div>
               <img src="../assets/logo.png" alt="logo" class="logo-img" />
@@ -24,7 +22,7 @@
               <v-container>
                 <v-row>
                   <v-card-title>
-                    <h1>Participe de um grupo</h1>
+                    <h1>Participe de um evento</h1>
                   </v-card-title>
                   <v-col cols="12">
                     <v-text-field
@@ -49,7 +47,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="dialog = false">
-                Save
+                Salvar
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -60,7 +58,9 @@
 </template>
 
 <script>
+import Button from './Button.vue'
 export default {
+  components:{ Button},
   props: {},
   data: () => ({
     dialog: false,
