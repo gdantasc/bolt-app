@@ -4,15 +4,22 @@
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent max-width="600px">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark v-bind="attrs" v-on="on"> Modal </v-btn>
+            <v-btn color="primary" dark v-bind="attrs" v-on="on">
+              Evento
+            </v-btn>
           </template>
           <v-card>
-            <v-card-title>
+            <div>
               <img src="../assets/logo.png" alt="logo" class="logo-img" />
-            </v-card-title>
-            <v-card-title>
-              <img src="../assets/close.svg" alt="logo" class="close-img" @click="dialog = false"/>
-            </v-card-title>
+            </div>
+            <div>
+              <img
+                src="../assets/close.svg"
+                alt="logo"
+                class="close-img"
+                @click="dialog = false"
+              />
+            </div>
             <v-card-text>
               <v-container>
                 <v-row>
@@ -40,7 +47,7 @@
               </v-container>
             </v-card-text>
             <v-card-actions>
-              <v-spacer></v-spacer>              
+              <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="dialog = false">
                 Save
               </v-btn>
@@ -54,12 +61,9 @@
 
 <script>
 export default {
-  props: {
-    tasks: { type: Array, required: true },
-  },
+  props: {},
   data: () => ({
     dialog: false,
-    description: "",
   }),
 };
 </script>
@@ -67,13 +71,13 @@ export default {
 <style>
 .logo-img {
   width: 80px;
-  margin: 0;
+  margin: 10px 0 0 30px;
 }
 
-.close-img{
-    position: absolute;
-    right: 60px;
-    top: 26px;
-    cursor: pointer;
+.close-img {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  cursor: pointer;
 }
 </style>
