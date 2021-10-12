@@ -2,7 +2,12 @@
   <div>
     <template>
       <v-row justify="center">
-        <v-dialog v-model="dialog" persistent max-width="600px">
+        <v-dialog
+          v-model="dialog"
+          persistent
+          class="modal_container"
+          max-width="600px"
+        >
           <v-card>
             <div>
               <img src="../assets/logo.png" alt="logo" class="logo-img" />
@@ -50,7 +55,7 @@
           </v-card>
         </v-dialog>
         <div @click="dialog = true">
-      <Button buttonName="Participar" @click="dialog = true" />
+          <Button buttonName="Participar" @click="dialog = true" />
         </div>
       </v-row>
     </template>
@@ -58,25 +63,22 @@
 </template>
 
 <script>
-import Button from '../components/Button.vue'
+import Button from "../components/Button.vue";
 
 export default {
   props: {
     event: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   components: {
-    Button
+    Button,
   },
   data: () => ({
-    dialog: false
+    dialog: false,
   }),
-  computed: {
-
-  },
-  methods: {
-  }
+  computed: {},
+  methods: {},
 };
 </script>
 
@@ -91,5 +93,9 @@ export default {
   right: 30px;
   top: 30px;
   cursor: pointer;
+}
+
+.modal_container {
+  height: 100px !important;
 }
 </style>
