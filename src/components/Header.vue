@@ -15,6 +15,11 @@
         />
 
       </div>
+      <v-spacer></v-spacer>
+       <div id="nav">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/events">Eventos</router-link>
+      </div>
 
       <v-spacer></v-spacer>
 
@@ -40,6 +45,21 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+
+  #nav {
+    padding: 5px;
+    margin: 0px 0 0 0;
+    
+
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+
+      &.router-link-exact-active {
+        color: #91d8f6;
+      }
+    }
+  }
 
 </style>
