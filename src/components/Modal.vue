@@ -43,6 +43,7 @@
                       <v-col cols="12">
                         <v-text-field
                           v-model="form.email"
+                          :rules="emailRules"
                           label="Email"
                           required
                         ></v-text-field>
@@ -96,6 +97,14 @@ export default {
       (v) => !!v || "Por favor insira um nome",
       (v) => (v && v.length >= 10) || "O Nome deve ter mais que 10 caracteres",
     ],
+    emailRules: [
+        v => !!v || ' Por favor insira um e-mail',
+        v => /.+@.+/.test(v) || 'O e-mail não é válido!',
+      ],
+      nicknameRules: [
+        v => !!v || 'Por favor insira um apelido',
+        v => (v && v.length >= 2) || 'o apelido deve ter mais que 2 caracteres',
+      ],
     form: {
       person_name: "",
       nickname: "",
