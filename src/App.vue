@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <v-app>
-     
+    <v-app>     
       <main>
         <router-view />
       </main>
@@ -25,20 +24,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 5px;
-  margin: 60px 0 0 0;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  margin-top: 50px;
 }
 
 @media (max-width: 1200px)  

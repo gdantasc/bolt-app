@@ -4,7 +4,7 @@
       <div>
         <ul>
           <p>Eventos</p>
-          <li><span  href="#" class="event-btn">Encontre um evento</span></li>
+          <li><router-link to="/events" class="event-btn"> Encontre um evento</router-link></li>
         </ul>
       </div>
       <v-spacer></v-spacer>
@@ -57,5 +57,6 @@ li {
 .event-btn {
   text-decoration: underline;
   cursor: pointer;
+  color: #fff;
 }
 </style>
