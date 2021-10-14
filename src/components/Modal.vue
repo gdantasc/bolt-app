@@ -24,31 +24,45 @@
               <v-container>
                 <v-row>
                   <v-card-title>
-                    <h1>Participe do evento: {{ event.name }}</h1>
+                    <h2>Participe do evento:</h2>
+                    <h1 class="mt-3 font-weight-black black--text d-block">
+                      {{ event.name }}
+                    </h1>
                   </v-card-title>
                   <v-col cols="12">
-                    <v-text-field
-                      label="Nome Completo"
-                      type="text"
-                      required
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field label="Email" required></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      label="Apelido"
-                      type="text"
-                      required
-                    ></v-text-field>
+                    <v-form ref="form" v-model="valid" lazy-validation>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="form.person_name"
+                          :rules="nameRules"
+                          label="Nome Completo"
+                          type="text"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="form.email"
+                          label="Email"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="form.nickname"
+                          label="Apelido"
+                          type="text"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                    </v-form>
                   </v-col>
                 </v-row>
               </v-container>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="dialog = false">
+              <v-btn color="blue darken-1" text @click="saveUser">
                 Salvar
               </v-btn>
             </v-card-actions>
@@ -63,6 +77,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Button from "../components/Button.vue";
 
 export default {
@@ -76,13 +91,42 @@ export default {
   },
   data: () => ({
     dialog: false,
+    valid: true,
+    nameRules: [
+      (v) => !!v || "Por favor insira um nome",
+      (v) => (v && v.length >= 10) || "O Nome deve ter mais que 10 caracteres",
+    ],
+    form: {
+      person_name: "",
+      nickname: "",
+      email: "",
+    },
   }),
   computed: {},
-  methods: {},
+  methods: {
+    async saveUser() {
+      if (this.$refs.form.validate()) {
+        try {
+          await axios.post("http://localhost:3030/appointment", {
+            ...this.form,
+            event: this.event,
+          });
+          return this.event.available_vacancies--;
+        } catch (e) {
+          console.log(e);
+          return alert(
+            `Ocorreu um erro ao se cadastrar no evento: ${e.message}`
+          );
+        } finally {
+          this.dialog = false;
+        }
+      }
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped>
 .logo-img {
   width: 80px;
   margin: 10px 0 0 30px;
@@ -97,5 +141,9 @@ export default {
 
 .modal_container {
   height: 100px !important;
+}
+
+.v-card__title {
+  display: block !important;
 }
 </style>

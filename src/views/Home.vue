@@ -1,33 +1,40 @@
 <template>
-  <div class="home">
-    <div>
-      <h1>Crie eventos na melhor plataforma do mercado</h1>
-      <p>
-        Aqui na Bolt você cria seus eventos, faz conexões com seu publico,
-        realizando encontros e compartilhando amizadas e conhecimentos
-      </p>
+  <div class="home__container">
+    <div class="home">
+      <div>
+        <h1>Cadastre-se em eventos na nossa plataforma</h1>
+        <p>
+          Aqui na <strong>SGRRP</strong> você participa dos seus eventos de uma
+          forma bem mais controlada e inovadora.
+        </p>
+      </div>
+      <div class="circle"></div>
+      <div class="circle2"></div>
+      <img src="../assets/img_home.svg" alt="imagem" />
     </div>
-    <div class="circle"></div>
-    <div class="circle2"></div>
-    <img src="../assets/img_home.svg" alt="imagem" />
-    <div class="search">
-    <Input />
-    <Button buttonName="Pesquisar" class="btn"/>
-    </div>
+    <carousels />
   </div>
 </template>
 
 <script>
-import Input from "../components/Input.vue"
-import Button from "../components/Button.vue"
+import Carousels from "../components/Carousels.vue";
 
 export default {
+  components: { Carousels },
   name: "Home",
-  components: { Input, Button},
 };
 </script>
 
 <style scoped>
+.home__container {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
+  height: 100vh;
+  margin-bottom: 5%;
+}
+
 h1 {
   height: 112px;
   width: 521px;
@@ -41,6 +48,7 @@ p {
   font-weight: 400;
   color: #8b8b8b;
   margin-left: 65px;
+  margin-top: 8%;
 }
 .circle {
   position: absolute;
@@ -72,5 +80,4 @@ img {
 .btn {
   margin-left: 30px;
 }
-
 </style>

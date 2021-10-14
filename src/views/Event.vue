@@ -6,7 +6,7 @@
           <Input />
           <Button buttonName="Pesquisar" class="btn" />
         </div>
-        <Card v-for="event in events" :key="event" :event="event" />
+        <Card v-for="event in filteredEvents" :key="event" :event="event" />
       </v-main>
     </v-app>
   </div>
@@ -16,6 +16,7 @@
 import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import Card from "../components/Card.vue";
+import axios from 'axios'
 
 export default {
   components: {
@@ -24,97 +25,31 @@ export default {
     Card,
   },
   data: () => ({
-    events: [
-      {
-        id: "dd847ded-6667-4fed-894b-a9db1f94c60f",
-        name: "Noite de louvor",
-        day: "12/09/2021",
-        start_date_time: "10:30",
-        end_date_time: "11:30",
-        vacancies: "20",
-        available_vacancies: "0",
-        description: null,
-        location: {
-          id: "ef58aea9-315e-46ac-90c6-661242df1844",
-          name: "Igreja Católica Santo André",
-          street: "Padre Jacinto de Carvalhais",
-          neighborhood: "Jardim Santo André",
-          house_number: "81",
-          state: "São Paulo",
-          city: "São Paulo",
-          cep: "08390-219",
-        },
-      },
-      {
-        id: "524a8719-d7aa-4879-8ed7-a2b172f12eed",
-        name: "Aviva Real",
-        day: "12/09/2021",
-        start_date_time: "10:30",
-        end_date_time: "11:30",
-        vacancies: "20",
-        available_vacancies: "20",
-        description: null,
-        location: {
-          id: "185559b9-edc4-4326-8e9d-e624603f391a",
-          name: "Igreja da Graça",
-          street: "Padre Jacinto de Carvalhais",
-          neighborhood: "Jardim Santo André",
-          house_number: "81",
-          state: "São Paulo",
-          city: "São Paulo",
-          cep: "08390-219",
-        },
-      },
-      {
-        id: "c6330b25-3b2f-4eec-93fa-ec8218f0572c",
-        name: "Missa",
-        day: "12/09/2021",
-        start_date_time: "10:30",
-        end_date_time: "11:30",
-        vacancies: "20",
-        available_vacancies: "17",
-        description: null,
-        location: {
-          id: "ef58aea9-315e-46ac-90c6-661242df1844",
-          name: "Igreja Católica Santo André",
-          street: "Padre Jacinto de Carvalhais",
-          neighborhood: "Jardim Santo André",
-          house_number: "81",
-          state: "São Paulo",
-          city: "São Paulo",
-          cep: "08390-219",
-        },
-      },
-      {
-        id: "f7be6b35-766f-4eff-b5e9-afb382a5d861",
-        name: "Espirro",
-        day: "12/09/2021",
-        start_date_time: "10:30",
-        end_date_time: "11:30",
-        vacancies: "20",
-        available_vacancies: "20",
-        description: "Evento diário na vida de muitos riniteiros",
-        location: {
-          id: "185559b9-edc4-4326-8e9d-e624603f391a",
-          name: "Igreja da Graça",
-          street: "Padre Jacinto de Carvalhais",
-          neighborhood: "Jardim Santo André",
-          house_number: "81",
-          state: "São Paulo",
-          city: "São Paulo",
-          cep: "08390-219",
-        },
-      },
-    ],
+    events: [],
   }),
+  async mounted() {
+    await this.loadEvents()
+  },
+  methods: {
+    async loadEvents() {
+        const response = await axios.get('http://localhost:3030/event')
+        console.log(response.data)
+        this.events = response.data
+    }
+  },
+  computed: {
+    filteredEvents() {
+      return this.events.filter(event => event.available_vacancies > 0).sort((a, b) => a.name > b.name ? 1 : -1)
+    }
+  }
 };
 </script>
 <style scoped>
 .search {
   display: flex;
-  margin: 15px 60px;
+  margin: 1% 15.5%;
 }
 .btn {
-  margin-left: 30px;
+  margin-left: 30px;  
 }
 </style>

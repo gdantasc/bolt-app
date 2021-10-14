@@ -43,4 +43,11 @@ export default {
     }
   }
 }
+
+@media (max-width: 1200px)  
+{
+  #app {
+    width: 2000px;
+  }
+}
 </style>
