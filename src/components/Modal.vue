@@ -51,6 +51,7 @@
                       <v-col cols="12">
                         <v-text-field
                           v-model="form.nickname"
+                          :rules="nicknameRules"
                           label="Apelido"
                           type="text"
                           required
@@ -71,6 +72,7 @@
         </v-dialog>
         <div @click="dialog = true">
           <Button buttonName="Participar" @click="dialog = true" />
+          <Snackbar :snackbar="snackbar" />
         </div>
       </v-row>
     </template>
@@ -80,6 +82,7 @@
 <script>
 import axios from "axios";
 import Button from "../components/Button.vue";
+import Snackbar from "./Snackbar.vue";
 
 export default {
   props: {
@@ -89,22 +92,28 @@ export default {
   },
   components: {
     Button,
+    Snackbar,
   },
   data: () => ({
     dialog: false,
     valid: true,
+    snackbar: {
+      show: false,
+      message: null,
+      color: null,
+    },
     nameRules: [
       (v) => !!v || "Por favor insira um nome",
       (v) => (v && v.length >= 10) || "O Nome deve ter mais que 10 caracteres",
     ],
     emailRules: [
-        v => !!v || ' Por favor insira um e-mail',
-        v => /.+@.+/.test(v) || 'O e-mail não é válido!',
-      ],
-      nicknameRules: [
-        v => !!v || 'Por favor insira um apelido',
-        v => (v && v.length >= 2) || 'o apelido deve ter mais que 2 caracteres',
-      ],
+      (v) => !!v || " Por favor insira um e-mail",
+      (v) => /.+@.+/.test(v) || "O e-mail não é válido!",
+    ],
+    nicknameRules: [
+      (v) => !!v || "Por favor insira um apelido",
+      (v) => (v && v.length >= 2) || "o apelido deve ter mais que 2 caracteres",
+    ],
     form: {
       person_name: "",
       nickname: "",
@@ -120,12 +129,19 @@ export default {
             ...this.form,
             event: this.event,
           });
+          this.snackbar = {
+            show: true,
+            message: `Parabéns! Sua inscrição foi realizada com sucesso.`,
+            color: "success",
+          };
           return this.event.available_vacancies--;
         } catch (e) {
           console.log(e);
-          return alert(
-            `Ocorreu um erro ao se cadastrar no evento: ${e.message}`
-          );
+          return this.snackbar = {
+            show: true,
+            message: `Ocorreu um erro ao se cadastrar no evento: ${e.message}`,
+            color: "error",
+          };
         } finally {
           this.dialog = false;
         }
