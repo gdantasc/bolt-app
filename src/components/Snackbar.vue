@@ -4,6 +4,8 @@
     v-model="snackbar.show"
     :timeout="5000"
     :color="snackbar.color"
+    top
+    right
   >
     {{ snackbar.message }}
   </v-snackbar>
