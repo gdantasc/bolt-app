@@ -35,7 +35,6 @@ export default {
   methods: {
     async loadEvents() {
       const response = await axios.get("http://localhost:3030/event");
-      console.log(response.data);
       this.events = response.data;
     },
   },
