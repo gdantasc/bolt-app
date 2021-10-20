@@ -15,7 +15,8 @@ export default {
   height: 37px;
   padding: 0 20px;
   border-radius: 6px;
-  background-color: #91d8f6;
+  background-color: #fc8a4a;
+  color: #fff;
   font-weight: 700;
   cursor: pointer;
 }

@@ -1,65 +1,46 @@
 <template>
-      <v-app-bar
-      app
-      color="#fff"
-      
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="../assets/logo.png"
-          transition="scale-transition"
-          width="60"
-        />
+  <v-app-bar app color="#fff">
+    <div class="d-flex align-center">
+      <v-img
+        alt="Vuetify Logo"
+        class="shrink mr-2"
+        contain
+        src="../assets/logo.svg"
+        transition="scale-transition"
+        width="60"
+      />
+    </div>
+    <v-spacer></v-spacer>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/events">Eventos</router-link>
+    </div>
 
-      </div>
-      <v-spacer></v-spacer>
-       <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/events">Eventos</router-link>
-      </div>
+    <v-spacer></v-spacer>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        
-        target="_blank"
-        text
-      >
-     
-      
-        <span class="mr-2"></span>
-        <v-img width="15" src="../assets/return.svg"
-        />
-        
-        
-      </v-btn>
-    </v-app-bar>
+    <v-btn target="_blank" text>
+      <span class="mr-2"></span>
+      <v-img width="15" src="../assets/return.svg" />
+    </v-btn>
+  </v-app-bar>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style lang="scss">
+#nav {
+  padding: 5px;
+  margin: 0px 0 0 0;
 
-  #nav {
-    padding: 5px;
-    margin: 0px 0 0 0;
-    
+  a {
+    font-weight: bold;
+    color: #2c3e50;
 
-    a {
-      font-weight: bold;
-      color: #2c3e50;
-
-      &.router-link-exact-active {
-        color: #91d8f6;
-      }
+    &.router-link-exact-active {
+      color: #fc8a4a;
     }
   }
-
+}
 </style>
