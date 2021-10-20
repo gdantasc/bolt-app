@@ -18,7 +18,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn target="_blank" text>
+    <v-btn @click="$router.push('/')" text> 
       <span class="mr-2"></span>
       <v-img width="15" src="../assets/return.svg" />
     </v-btn>
