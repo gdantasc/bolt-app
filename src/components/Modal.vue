@@ -71,9 +71,9 @@
           </v-card>
         </v-dialog>
         <div @click="dialog = true">
-          <Button buttonName="Participar" @click="dialog = true" />
-          <Snackbar :snackbar="snackbar" />
+          <Button buttonName="Participar"/>
         </div>
+          <Snackbar :snackbar="snackbar" />
       </v-row>
     </template>
   </div>
