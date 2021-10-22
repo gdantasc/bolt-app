@@ -47,7 +47,6 @@ export default {
         .sort((a, b) => (a.name > b.name ? 1 : -1));
     },
     filteredItems() {
-      console.log(this.filter)
       if (this.filter) {
         const events = this.events.filter((event) => {
           return event.name.toLowerCase().includes(this.filter.toLowerCase());
