@@ -2,8 +2,9 @@
   <v-app-bar app color="#fff">
     <div class="d-flex align-center">
       <v-img
+        @click="$router.push('/')"
         alt="Vuetify Logo"
-        class="shrink mr-2"
+        class="logo-img"
         contain
         src="../assets/logo.svg"
         transition="scale-transition"
@@ -42,5 +43,8 @@ export default {};
       color: #fc8a4a;
     }
   }
+}
+.logo-img{
+  cursor: pointer;
 }
 </style>
